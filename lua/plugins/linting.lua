@@ -1,6 +1,7 @@
 return {
     {
         "nvimtools/none-ls.nvim",
+        commit = "bb680d752cec37949faca7a1f509e2fe67ab418a", -- Pinned to version without deprecation warning
         config = function()
             local null_ls = require("null-ls")
             null_ls.setup({
