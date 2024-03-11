@@ -5,38 +5,31 @@ vim.g.maplocalleader = " "
 -- Install lazy plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- Initialize lazyvim
 require("lazy").setup("plugins")
 
--- [[ OPTIONS ]]
--- Vim Options
-vim.opt.tabstop = 4        -- Display tab 4 characters wide
-vim.opt.shiftwidth = 4     -- Indentation with to 4 spaces
-vim.opt.expandtab = true   -- Use spaces instead of tabs
-vim.wo.number = true       -- Turn on absolute line numbers
-vim.o.scrolloff = 8
-vim.o.signcolumn = "yes:1" -- Always display a sign column 1 char wide
+require("core.options")
 
 -- [[ AUTOCMD CALLS ]]
 -- Auto format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
-    callback = function()
-        if vim.bo.filetype == "lua" then
-            vim.lsp.buf.format({
-                async = false,
-            })
-        end
-    end,
+	pattern = "*",
+	callback = function()
+		if vim.bo.filetype == "lua" then
+			vim.lsp.buf.format({
+				async = false,
+			})
+		end
+	end,
 })
