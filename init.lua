@@ -26,7 +26,7 @@ require("core.options")
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	callback = function()
-		if vim.bo.filetype == "lua" then
+		if vim.bo.filetype == "lua" or vim.bo.filetype == "python" then
 			vim.lsp.buf.format({
 				async = false,
 			})
