@@ -159,4 +159,12 @@ return {
 		mode = "n",
 		desc = "Telescope find helptags",
 	},
+
+	-- [[ LEGENDARY ]]
+	{
+		"<C-p>",
+		":Legendary<CR>",
+		mode = { "n", "v", "x", "o", "i" },
+		desc = "Toggle Command Palette",
+	},
 }
